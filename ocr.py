@@ -13,15 +13,17 @@ def pre_processing(image_path):
         raise FileNotFoundError(f"Could not open or find the image: {image_path}")
 
     print("Image is processed now....")
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #converting from RGB to Gray Scale ==> (R+G+B) / 3 
     blur = cv2.GaussianBlur(gray, (5, 5), 0)
-    _, thresholded = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    _, thresholded = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU) 
+    ''' if pixel value >= Calculated Thresholded ==> 255
+        if pixel value <= Calculated Thresholeded ==> 0 '''
 
     return thresholded
 
 def text_extraction(Pimage):
     print("[3/4] Passing processed matrix to Tesseract Engine...")
-    custom_configure = r'--psm 3'
+    custom_configure = r'--psm 3' # psm3 is page segmintaion model we choose model 3 because it auto that suitable for every thing 
     text = pytesseract.image_to_data(Pimage, config=custom_configure, output_type=pytesseract.Output.DICT)
     return text
 
