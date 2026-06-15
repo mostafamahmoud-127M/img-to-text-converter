@@ -28,7 +28,7 @@ def text_extraction(Pimage):
     return text
 
 def filter_and_display(original_image_path, ocr_data):
-    CONFIDENCE_THRESHOLD = 80
+    CONFIDENCE_THRESHOLD = 80 # confidince threshold is 80 to redue the model hallucination 
     extracted_words = []
 
     n_boxes = len(ocr_data['text'])
@@ -45,7 +45,7 @@ def filter_and_display(original_image_path, ocr_data):
     print("------------------------------------------------")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":          #this is the main controller for the entire program 
     # STEP 1: INPUT & PRE-PROCESSING
     processed_canvas = pre_processing(image_path)
 
