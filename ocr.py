@@ -4,7 +4,7 @@ import numpy as np
 import pytesseract
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-image_path = r"D:\ACS - WIN 10\Documents\OCR\book.png"
+image_path = r"D:\\Documents\OCR\book.png"
 
 def pre_processing(image_path):
     print("Loading image......")
