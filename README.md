@@ -1,29 +1,33 @@
-# OCR Text Extraction with OpenCV and Tesseract
+#  Image-to-Text Converter (OCR)
 
-A Python-based Optical Character Recognition (OCR) pipeline that preprocesses images using **OpenCV** to improve text readability, extracts text data via **Tesseract OCR**, and filters out low-confidence results to deliver clean, accurate text output.
+[![Python](https://img.shields.io/badge/Python-3.8+-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![OCR Engine](https://img.shields.io/badge/OCR-Tesseract%20%2F%20EasyOCR-007ACC.svg?style=flat)](#)
+[![Computer Vision](https://img.shields.io/badge/Vision-OpenCV-5C3EE8.svg?style=flat&logo=opencv&logoColor=white)](https://opencv.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-
-## Features
-* **Image Preprocessing:** Automatically converts images to grayscale, applies Gaussian blurring to reduce noise, and utilizes **Otsu's Thresholding** to create a clean binary (black and white) image optimized for OCR.
-* **Structured Data Extraction:** Uses Tesseract’s `image_to_data` to fetch not just the raw text, but positional data and confidence scores for every single word.
-* **Confidence Filtering:** Filters out noisy or misread characters by only printing words that meet a customizable confidence threshold (default: >= 80%).
-
----
-
-## Prerequisites
-Before running the script, ensure you have the following installed on your system:
-
-1. **Python 3.x**
-2. **Tesseract OCR Engine** (Windows installer required for the default path used in this script).
+A lightweight, automated optical character recognition pipeline designed to extract, parse, and structure text from raster images, scanned documents, and photographic captures. Built with foundational computer vision preprocessing to maximize character detection accuracy.
 
 ---
 
-## Installation & Setup
+##  Features
 
-### 1. Install Python Dependencies
-Install the required libraries using `pip`:
-```bash
-pip install opencv-python numpy pytesseract
-pytesseract.pytesseract.tesseract_cmd = r"YOUR_TESSERACT_PATH_HERE"
-image_path = r"C:\Your\Path\To\Your\image.png"
-python your_script_name.py
+* **Multi-Format Ingestion**: Supports common image formats including `.png`, `.jpg`, `.jpeg`, and `.bmp`.
+* **Vision Preprocessing Pipeline**: Applies grayscale conversion, thresholding/binarization, and noise suppression to improve OCR precision on degraded inputs.
+* **Text Extraction & Post-Processing**: Detects character boundaries, extracts textual content, and strips layout noise or artifacts.
+* **Flexible Export**: Displays extracted strings directly in the terminal interface or persists output to `.txt` files.
+
+---
+
+##  Pipeline Architecture
+
+```text
+[ Input Image ] 
+       │
+       ▼
+[ Preprocessing (Grayscale, Thresholding, Denoising) ]
+       │
+       ▼
+[ OCR Inference Engine (Character Detection & Recognition) ]
+       │
+       ▼
+[ Extracted Text / Formatted Output (.txt / CLI) ]
